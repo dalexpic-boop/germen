@@ -1,90 +1,20 @@
 # Revisión de la conversión de LISTAS.md
 
-Casos en los que no quise adivinar. Cada uno ya tiene un valor provisional en `data/*.js` para que la app funcione; dime en el chat cuáles cambiar (por ejemplo: "2: radio femenino; 3: león rampante y cerdo y gallo sí animados").
+**Cerrada el 27-11-2026.** No quedan casos abiertos. Lo que sigue es el registro de lo decidido, para consultarlo si algo suena raro. Los datos (`data/*.js`) ya lo reflejan.
 
-Cuando un caso quede resuelto lo borro de aquí.
+## Decidido por Den
 
----
+- **Género:** la radio de válvulas, el trapecista, el alquimista, la tragamonedas, la pin-up, el ankh, la hamsa, el torii, el athame.
+- **Animados:** cerdo y gallo, caballo con gualdrapa, león rampante, águila bicéfala, homúnculo en frasco, mandrágora, muñeco vudú, marioneta, muñeca de porcelana, soldadito de plomo, ángel funerario, luna con rostro y sol con rostro. Pueden sostener, devorar, enfrentar y servir en retos con figura.
+- **Plurales** de palabras extranjeras y aposiciones, tal como se generaron: wyverns, krakens, gólems, peces koi, hombres lobo, etc.
+- **Frases de conceptos:** "lo oculto tras la máscara" y "un derrotero". "Performance", "memento mori", "tiempo", "vida" y "futuro" quedan tal cual.
+- **"Enroscado en"** solo con secundarios flexibles (lista en `data/relaciones.js`).
+- **Variantes de reto acortadas:** "curvilínea de ojo de pez", "tensión extrema (combate, salto mortal)"; en reto no se repite el nombre de la variable ("composición: centrada").
 
-## 1. Plurales de por sí que no estaban en la lista
+## Aceptado como se propuso
 
-Los marqué en plural ("unas tijeras", "unos labios oxidados"):
-
-- raíces
-- labios
-- tijeras
-- boleadoras
-
-## 2. Género dudoso
-
-Resuelto por Den: la radio de válvulas, el trapecista, el alquimista, la tragamonedas. Quedan:
-
-| Elemento | Provisional | Duda |
-|---|---|---|
-| pin-up | femenino | Sirve para los dos. |
-| ankh | masculino | Palabra egipcia sin género claro en español. |
-| hamsa | femenino | Se usa más "la hamsa". |
-| torii | masculino | Palabra japonesa. |
-| athame | masculino | Palabra inglesa. |
-
-## 3. ¿Animado o no?
-
-Resuelto: Den dijo que pueden ser lo uno o lo otro, así que los 13 quedaron **animados**. Un elemento animado sigue saliendo en todas las relaciones; ser animado solo le suma "sostener", "devorar", "enfrentar" y los retos con figura.
-
-## 4. Plurales dudosos
-
-Solo se usan en la relación "formado por" ("un cráneo formado por polillas"). Las palabras extranjeras y las aposiciones (la segunda palabra que no cambia) son las dudosas:
-
-- Extranjeras: trebuchets, wyverns, krakens, gólems, kirines, ankhs, pin-ups, toriis, tengus, bakus, kitsunes, kappas, athames, narguiles
-- Aposiciones: kabutos samurái, máscaras hannya, tableros ouija, muñecos vudú, banderas pirata, bodegones vanitas, hombres lobo, polillas calavera, polillas luna, escarabajos rinoceronte, tiburones martillo, peces koi, rayas manta, peces globo, hongos amanita, cajas sorpresa, cohetes retro
-
-## 5. Conceptos que son adjetivos
-
-En "Que transmita…" un adjetivo suelto no funciona ("Que transmita infantil"), así que les puse una frase:
-
-- infantil → lo infantil
-- tétrico → lo tétrico
-- lúgubre → lo lúgubre
-- onírico → lo onírico
-- etéreo → lo etéreo
-- político → lo político
-- artificial → lo artificial
-- espiritual → lo espiritual
-- infinito → lo infinito
-
-El chip sigue mostrando la palabra sola.
-
-## 6. Conceptos que quizá suenen raros
-
-Los dejé como están. Dime si quieres otra frase para alguno:
-
-- "Que transmita máscara". ¿Quizá "lo oculto tras la máscara"?
-- "Que transmita performance"
-- "Que transmita derrotero". ¿Quizá "un derrotero" o "rumbo"?
-- "Que transmita memento mori"
-- "Que transmita tiempo", "vida", "futuro". Suenan bien, pero un poco abiertos.
-
-## 7. Frases compuestas y concordancia
-
-- **cerdo y gallo:** "un cerdo y un gallo". Para el estado lo traté como masculino plural: "un cerdo y un gallo dorados".
-- **pluma y tintero:** "una pluma y un tintero", también masculino plural: "una pluma y un tintero oxidados".
-- **máscaras de comedia y tragedia:** femenino plural: "unas máscaras de comedia y tragedia doradas".
-
-## 8. Reglas nuevas
-
-Las agregué para que un elemento no coincida con un formato casi igual. Salen en todos los modos:
-
-- elemento "carta de tarot" × formato "carta de tarot"
-- elemento "vitral" × formato "vitral"
-- elemento "moneda antigua" × formato "moneda"
-
-## 9. Detalles de presentación
-
-- En los movimientos artísticos, el chip muestra el nombre sin artículo ("art nouveau") y la frase lo conserva ("Inspirado en el art nouveau").
-- Las variantes de composición de nivel 1 y 2 llevan `tambienLucir: true`, así salen también en lucir.
-
-## 10. Visto al generar semillas
-
-Resuelto por Den:
-- **"enroscado en"** ahora solo sale si el secundario es flexible: serpiente, cobra, serpiente emplumada, basilisco, hidra, dragón, wyvern, kraken, pulpo, morena, medusa, ciempiés, ouroboros, hiedra, pasiflora, rama de espinas, raíces, cadena, soga de horca, rosario, collar de perlas, trenza o red de pesca. La lista se edita en `data/relaciones.js`.
-- **Variantes acortadas:** "perspectiva: curvilínea de ojo de pez" y "pose: tensión extrema (combate, salto mortal)". En reto, "composición centrada" sale como "composición: centrada"; en lucir sigue completa ("Foco: composición centrada").
+- **Plurales de por sí agregados:** raíces, labios, tijeras, boleadoras.
+- **Adjetivos como concepto:** lo infantil, lo tétrico, lo lúgubre, lo onírico, lo etéreo, lo político, lo artificial, lo espiritual, lo infinito.
+- **Compuestos en masculino plural:** "un cerdo y un gallo dorados", "una pluma y un tintero oxidados"; "unas máscaras de comedia y tragedia doradas".
+- **Reglas nuevas:** carta de tarot, vitral y moneda no salen a la vez como elemento y como formato.
+- **Chips:** los movimientos artísticos se muestran sin artículo ("art nouveau"); la frase lo conserva.
