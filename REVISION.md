@@ -17,13 +17,11 @@ Los marqué en plural ("unas tijeras", "unos labios oxidados"):
 
 ## 2. Género dudoso
 
+Resuelto por Den: la radio de válvulas, el trapecista, el alquimista, la tragamonedas. Quedan:
+
 | Elemento | Provisional | Duda |
 |---|---|---|
 | pin-up | femenino | Sirve para los dos. |
-| trapecista | masculino | Sirve para los dos ("un trapecista" / "una trapecista"). |
-| alquimista | masculino | Sirve para los dos. |
-| radio de válvulas | masculino | "El radio" en Colombia, "la radio" en España. |
-| tragamonedas | femenino | Se usan las dos formas. |
 | ankh | masculino | Palabra egipcia sin género claro en español. |
 | hamsa | femenino | Se usa más "la hamsa". |
 | torii | masculino | Palabra japonesa. |
@@ -31,23 +29,7 @@ Los marqué en plural ("unas tijeras", "unos labios oxidados"):
 
 ## 3. ¿Animado o no?
 
-SPEC.md define los animados por familia más una lista suelta. Estos son seres o figuras que quedaron **no animados** por estar en otras familias. Si son animados pueden **sostener, devorar y enfrentar**, y sirven en los retos que exigen figura (pose, escorzo con figura).
-
-- cerdo y gallo
-- caballo con gualdrapa
-- león rampante
-- águila bicéfala
-- homúnculo en frasco
-- mandrágora
-- muñeco vudú
-- marioneta
-- muñeca de porcelana
-- soldadito de plomo
-- ángel funerario
-- luna con rostro
-- sol con rostro
-
-(pin-up sí es animado, por estar en Personajes y oficios.)
+Resuelto: Den dijo que pueden ser lo uno o lo otro, así que los 13 quedaron **animados**. Un elemento animado sigue saliendo en todas las relaciones; ser animado solo le suma "sostener", "devorar", "enfrentar" y los retos con figura.
 
 ## 4. Plurales dudosos
 

@@ -89,6 +89,17 @@ test("elementos: casos gramaticales de LISTAS.md", () => {
   }
 });
 
+test("elementos: decisiones de Den en REVISION.md", () => {
+  const el = (t) => S.elementos.find((e) => e.texto === t);
+  const generos = { "radio de válvulas": "f", trapecista: "m", alquimista: "m", tragamonedas: "f" };
+  for (const [t, g] of Object.entries(generos)) assert.equal(el(t).genero, g, t);
+  for (const t of ["cerdo y gallo", "caballo con gualdrapa", "león rampante", "águila bicéfala",
+    "homúnculo en frasco", "mandrágora", "muñeco vudú", "marioneta", "muñeca de porcelana", "soldadito de plomo",
+    "ángel funerario", "luna con rostro", "sol con rostro"]) {
+    assert.equal(el(t).animado, true, t);
+  }
+});
+
 test("familias animadas de elementos según LISTAS.md", () => {
   const animadas = S.familiasElementos.filter((f) => f.animada).map((f) => f.id).sort();
   assert.deepEqual(animadas, ["aves", "bestiario-y-mitologia", "criaturas-marinas", "fauna-terrestre",
