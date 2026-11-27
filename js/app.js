@@ -450,7 +450,43 @@
   });
   $("#btn-borrar").addEventListener("click", borrarHistorial);
 
+  // ---------- Service worker y actualizaciones ----------
+  // Solo con http(s): desde file:// la app funciona igual, pero sin caché propia.
+  function registrarServiceWorker() {
+    if (!("serviceWorker" in navigator) || !/^https?:$/.test(location.protocol)) return;
+    let recargando = false;
+    // En la primera visita el service worker toma el control sin que haga falta recargar.
+    let habiaControlador = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (!habiaControlador) { habiaControlador = true; return; }
+      if (recargando) return;
+      recargando = true;
+      location.reload();
+    });
+    navigator.serviceWorker.register("sw.js").then((reg) => {
+      const ofrecer = (sw) => {
+        // Sin controlador es la primera instalación: no hay nada que actualizar.
+        if (!sw || !navigator.serviceWorker.controller) return;
+        $("#actualizacion").hidden = false;
+        $("#btn-actualizar").onclick = () => sw.postMessage("activar");
+      };
+      if (reg.waiting) ofrecer(reg.waiting);
+      reg.addEventListener("updatefound", () => {
+        const nuevo = reg.installing;
+        if (!nuevo) return;
+        nuevo.addEventListener("statechange", () => {
+          if (nuevo.state === "installed") ofrecer(nuevo);
+        });
+      });
+      // Al volver a la app, revisa si hay una versión nueva publicada.
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") reg.update().catch(() => {});
+      });
+    }).catch(() => { /* sin service worker la app sigue funcionando en línea */ });
+  }
+
   pintarTema();
   pintarControles();
   generar();
+  registrarServiceWorker();
 })();

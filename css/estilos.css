@@ -292,3 +292,24 @@ button:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
 .fila-botones button { flex: 1; }
 .peligro { width: 100%; color: var(--acento); border-color: var(--acento); }
 .pie { text-align: center; color: var(--tenue); font: italic 0.85rem var(--serif); margin: 32px 0 8px; }
+
+/* ---------- Aviso de actualización ---------- */
+.actualizacion {
+  position: fixed;
+  top: max(8px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 28px), 612px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 14px;
+  background: var(--tinta);
+  color: var(--papel);
+  border-radius: var(--radio);
+  z-index: 20;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
+}
+.actualizacion[hidden] { display: none; }
+.actualizacion span { flex: 1; }
+.actualizacion button { background: var(--acento); border-color: var(--acento); color: var(--acento-tinta); padding: 0 16px; font-weight: 600; }

@@ -7,6 +7,9 @@
   <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
   <meta name="description" content="Semillas creativas para dibujar tatuajes e ilustraciones.">
   <title>Germen Graphidis</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icono-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -122,6 +125,11 @@
   </main>
 
   <div class="aviso" id="aviso" role="status" aria-live="polite" hidden></div>
+
+  <div class="actualizacion" id="actualizacion" role="alert" hidden>
+    <span>Hay una actualización</span>
+    <button id="btn-actualizar">Recargar</button>
+  </div>
 
   <script src="config.js"></script>
   <script src="data/estilos.js"></script>

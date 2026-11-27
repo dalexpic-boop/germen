@@ -17,6 +17,8 @@ Usuario: Den, tatuador e ilustrador, hispanohablante. Dispositivo principal: cel
 - Los datos se cargan como scripts clásicos (no `fetch`, no módulos ES), para que la app funcione también abierta desde `file://`. Usa el patrón de envoltura de SPEC.md §3 para que carguen igual en Node.
 - `js/generador.js` y `js/frase.js` son puros: sin DOM y con `rng` inyectable. Cada regla nueva lleva su prueba.
 - Pruebas: `node --test tests/`. Deben pasar antes de cada commit.
+- Antes de cada commit que toque archivos de la app, corre `node tools/version.js`: actualiza la versión de la caché en `sw.js` para que los dispositivos vean el aviso de actualización. Una prueba falla si se olvida. Un archivo nuevo de la app también va en la lista `ARCHIVOS` de `sw.js`.
+- Publicar: `git push` a `main`; GitHub Pages actualiza la página en uno o dos minutos.
 - No agregues dependencias ni cambies el stack sin preguntar.
 - Antes de un cambio grande, propone un plan corto y espera aprobación.
 - Commits pequeños, uno por funcionalidad.
