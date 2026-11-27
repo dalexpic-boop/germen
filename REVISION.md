@@ -82,3 +82,9 @@ Las agregué para que un elemento no coincida con un formato casi igual. Salen e
 
 - En los movimientos artísticos, el chip muestra el nombre sin artículo ("art nouveau") y la frase lo conserva ("Inspirado en el art nouveau").
 - Las variantes de composición de nivel 1 y 2 llevan `tambienLucir: true`, así salen también en lucir.
+
+## 10. Visto al generar semillas
+
+- **"enroscado en"** pone al secundario enroscado en el principal, y a veces sale raro ("una góndola enroscada en una jaula colgante"). ¿Lo limito a secundarios flexibles (serpientes, hiedra, cadena, raíces, pulpo…)?
+- **Variantes que repiten el nombre de su variable:** "Reto nivel 3, perspectiva: perspectiva curvilínea de ojo de pez". ¿La dejo como "curvilínea de ojo de pez"?
+

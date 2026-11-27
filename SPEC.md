@@ -275,3 +275,6 @@ Mobile-first, compacta, utilizable en una tablet apoyada al lado del papel.
 - Los conceptos que son adjetivos llevan `frase` propia ("lo infantil") para que "Que transmita…" sea gramatical; se revisan en REVISION.md.
 - Se agregan reglas "siempre" para que un elemento no coincida con un formato del mismo nombre (carta de tarot, vitral).
 - El universo "lugares" no tiene segundo nivel; los subniveles (mar, norte…) quedan como idea para después.
+- Formato de la semilla: `{ id, fecha, modo, terminos }`. `terminos` guarda ids por eje (`estilo`, `color`, `sombreado`, `linea`, `foco`, `elemento`, `secundario`, `relacion`, `estado`, `concepto1`, `concepto2`, `par`, `universo`, `formato`, `zona`). `universo` es `{ id, sub? }` y `estado` es `{ id, en: "A" | "B" }`: hay a lo sumo un estado, aplicado al principal o al secundario.
+- El generador sortea en ese orden; el foco va antes del elemento para que una variante con figura exija un elemento animado. Los términos bloqueados se colocan primero y los demás se sortean entre los compatibles con lo ya colocado. Es el equivalente de "resortear el término no bloqueado más reciente".
+- Sin elemento y con par en tensión, la frase empieza "Tensión entre {a} y {b}, en {estilo}…".
