@@ -268,6 +268,7 @@ Mobile-first, compacta, utilizable en una tablet apoyada al lado del papel.
 ## 15. Pendientes
 
 - **Cuenta de GitHub:** creada (`dalexpic-boop`). Se despliega desde el paso 3 de la fase 1 para probar en el celular.
+- **Fase 1 cerrada (27-11-2026):** publicada en `dalexpic-boop.github.io/germen`. Den confirmó que en su Android se instala y funciona en modo avión. Quedan casos abiertos en REVISION.md, con valores provisionales.
 
 ## 16. Decisiones tomadas al planear la fase 1
 
