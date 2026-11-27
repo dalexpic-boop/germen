@@ -4,6 +4,7 @@
   const S = window.SEMILLA;
   const G = S.generador;
   const F = S.frase;
+  const R = S.respaldo;
 
   const CLAVES = { historial: "semilla.historial", ajustes: "semilla.ajustes", recientes: "semilla.recientes" };
   const AJUSTES_INICIALES = { soporte: "lienzo", intencion: "lucir", nivel: 1, densidad: "escueta", elementos: "auto",
@@ -28,6 +29,7 @@
     historial: leer(CLAVES.historial, []),
     semilla: null,
     bloqueos: new Set(),
+    filtro: "todas",
   };
 
   // ---------- Utilidades ----------
@@ -152,13 +154,18 @@
   }
 
   function pintarControles() {
-    document.querySelectorAll(".segmento").forEach((seg) => {
+    document.querySelectorAll(".segmento[data-ajuste]").forEach((seg) => {
       const clave = seg.dataset.ajuste;
       seg.querySelectorAll("button").forEach((b) => {
         b.setAttribute("aria-checked", String(String(estado.ajustes[clave]) === b.dataset.valor));
       });
     });
     $("#control-nivel").hidden = estado.ajustes.intencion !== "reto";
+    const n = +estado.ajustes.ventana;
+    $("#ventana-valor").textContent = n;
+    $("#ventana-texto").textContent = n;
+    $("#ventana-menos").disabled = n <= 0;
+    $("#ventana-mas").disabled = n >= 100;
   }
 
   function pintarTema() {
@@ -184,6 +191,10 @@
 
   function generar() {
     const antes = estado.semilla;
+    if (antes && Object.keys(antes.terminos).every((eje) => estado.bloqueos.has(eje))) {
+      avisar("Todo está bloqueado: desbloquea algo para relanzar");
+      return;
+    }
     const bloqueos = antes ? [...estado.bloqueos] : [];
     estado.semilla = G.generar(antes, bloqueos, modoGenerador(), rng);
     for (const eje of [...estado.bloqueos]) if (estado.semilla.terminos[eje] == null) estado.bloqueos.delete(eje);
@@ -243,9 +254,160 @@
   }
 
   function cambiarAjuste(clave, valor) {
-    estado.ajustes[clave] = clave === "nivel" ? +valor : valor;
+    estado.ajustes[clave] = clave === "nivel" || clave === "ventana" ? +valor : valor;
     escribir(CLAVES.ajustes, estado.ajustes);
+    if (clave === "tema") pintarTema();
+    if (clave === "ventana") {
+      const sobran = estado.recientes.length - estado.ajustes.ventana;
+      if (sobran > 0) { estado.recientes.splice(0, sobran); escribir(CLAVES.recientes, estado.recientes); }
+    }
     pintarControles();
+  }
+
+  // ---------- Historial ----------
+  const FECHA = new Intl.DateTimeFormat("es", { day: "numeric", month: "short", year: "numeric" });
+
+  function describirModo(m) {
+    if (!m) return "";
+    return [m.intencion === "reto" ? "Reto nivel " + (m.nivel || 1) : "Lucir",
+      m.soporte === "piel" ? "piel" : "lienzo", m.densidad].join(" · ");
+  }
+
+  function guardarHistorial() {
+    escribir(CLAVES.historial, estado.historial);
+  }
+
+  function pintarHistorial() {
+    const ol = $("#historial");
+    ol.textContent = "";
+    $("#filtro").querySelectorAll("button").forEach((b) => {
+      b.setAttribute("aria-checked", String(b.dataset.valor === estado.filtro));
+    });
+    const lista = estado.historial.filter((h) => estado.filtro === "todas" ||
+      (estado.filtro === "dibujadas" ? h.estado === "dibujada" : h.estado !== "dibujada"));
+
+    const vacio = $("#historial-vacio");
+    vacio.hidden = lista.length > 0;
+    if (!lista.length) {
+      vacio.textContent = !estado.historial.length ? "Aún no guardaste semillas. Usa Guardar en Generar."
+        : estado.filtro === "dibujadas" ? "Todavía no marcaste ninguna como dibujada." : "No hay semillas pendientes.";
+    }
+
+    for (const h of lista) {
+      const dibujada = h.estado === "dibujada";
+      const li = document.createElement("li");
+      li.className = "entrada" + (dibujada ? " dibujada" : "");
+
+      const frase = document.createElement("p");
+      frase.className = "entrada-frase";
+      frase.textContent = h.frase || "";
+
+      const meta = document.createElement("p");
+      meta.className = "entrada-meta";
+      const fecha = new Date(h.fecha);
+      meta.textContent = (isNaN(fecha) ? "" : FECHA.format(fecha) + " · ") + describirModo(h.modo);
+      const insignia = document.createElement("span");
+      insignia.className = "insignia";
+      insignia.textContent = dibujada ? "dibujada" : "pendiente";
+      meta.append(" ", insignia);
+
+      const nota = document.createElement("textarea");
+      nota.className = "entrada-nota";
+      nota.rows = 1;
+      nota.maxLength = 280;
+      nota.placeholder = "Nota corta…";
+      nota.value = h.nota || "";
+      nota.setAttribute("aria-label", "Nota de la semilla");
+      nota.addEventListener("change", () => {
+        h.nota = nota.value.trim();
+        h.actualizada = new Date().toISOString();
+        guardarHistorial();
+      });
+
+      const acciones = document.createElement("div");
+      acciones.className = "entrada-acciones";
+      const marcar = document.createElement("button");
+      marcar.textContent = dibujada ? "Marcar pendiente" : "Marcar dibujada";
+      marcar.addEventListener("click", () => {
+        h.estado = dibujada ? "guardada" : "dibujada";
+        h.actualizada = new Date().toISOString();
+        guardarHistorial();
+        pintarHistorial();
+      });
+      const usar = document.createElement("button");
+      usar.textContent = "Volver a usar";
+      usar.addEventListener("click", () => volverAUsar(h));
+      acciones.append(marcar, usar);
+
+      li.append(frase, meta, nota, acciones);
+      ol.append(li);
+    }
+  }
+
+  // Carga la semilla en Generar con todos los términos bloqueados.
+  function volverAUsar(h) {
+    estado.semilla = { id: h.id, fecha: h.fecha, modo: h.modo, terminos: h.terminos };
+    estado.bloqueos = new Set(Object.keys(h.terminos));
+    if (h.modo) {
+      for (const k of ["soporte", "intencion", "densidad", "elementos"]) if (h.modo[k]) estado.ajustes[k] = h.modo[k];
+      if (h.modo.nivel) estado.ajustes.nivel = h.modo.nivel;
+      escribir(CLAVES.ajustes, estado.ajustes);
+    }
+    pintarControles();
+    pintar();
+    mostrarPestana("generar");
+    avisar("Semilla cargada con todo bloqueado");
+  }
+
+  // ---------- Respaldo ----------
+  function exportar() {
+    const ahora = new Date();
+    const datos = R.crear(estado.historial, estado.ajustes, ahora);
+    const blob = new Blob([JSON.stringify(datos, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = R.nombreArchivo(ahora);
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    avisar(estado.historial.length + " semillas exportadas");
+  }
+
+  function importar(archivo) {
+    if (!archivo) return;
+    const lector = new FileReader();
+    lector.onload = () => {
+      try {
+        const datos = R.leer(String(lector.result));
+        const r = R.fusionar(estado.historial, datos.historial);
+        estado.historial = r.historial;
+        guardarHistorial();
+        pintarHistorial();
+        pintarBotones();
+        let msg = "Importado: " + (r.agregadas === 1 ? "1 semilla nueva" : r.agregadas + " semillas nuevas");
+        if (r.actualizadas) msg += ", " + r.actualizadas + " actualizadas";
+        avisar(msg);
+      } catch (e) {
+        avisar(e.message || "No se pudo importar");
+      }
+    };
+    lector.onerror = () => avisar("No se pudo leer el archivo");
+    lector.readAsText(archivo);
+  }
+
+  function borrarHistorial() {
+    const n = estado.historial.length;
+    if (!n) { avisar("El historial ya está vacío"); return; }
+    const pregunta = "¿Borrar las " + n + " semillas del historial? No se puede deshacer. " +
+      "Si quieres conservarlas, exporta un respaldo antes.";
+    if (!window.confirm(pregunta)) return;
+    estado.historial = [];
+    guardarHistorial();
+    pintarHistorial();
+    pintarBotones();
+    avisar("Historial borrado");
   }
 
   function mostrarPestana(nombre) {
@@ -255,10 +417,12 @@
       $("#panel-" + n).hidden = !activa;
     }
     $(".acciones").hidden = nombre !== "generar";
+    if (nombre === "historial") pintarHistorial();
+    window.scrollTo(0, 0);
   }
 
   // ---------- Arranque ----------
-  document.querySelectorAll(".segmento").forEach((seg) => {
+  document.querySelectorAll(".segmento[data-ajuste]").forEach((seg) => {
     seg.addEventListener("click", (ev) => {
       const b = ev.target.closest("button");
       if (b) cambiarAjuste(seg.dataset.ajuste, b.dataset.valor);
@@ -270,6 +434,21 @@
   $("#btn-generar").addEventListener("click", generar);
   $("#btn-guardar").addEventListener("click", guardar);
   $("#btn-copiar").addEventListener("click", copiar);
+  $("#filtro").addEventListener("click", (ev) => {
+    const b = ev.target.closest("button");
+    if (!b) return;
+    estado.filtro = b.dataset.valor;
+    pintarHistorial();
+  });
+  $("#ventana-menos").addEventListener("click", () => cambiarAjuste("ventana", Math.max(0, +estado.ajustes.ventana - 5)));
+  $("#ventana-mas").addEventListener("click", () => cambiarAjuste("ventana", Math.min(100, +estado.ajustes.ventana + 5)));
+  $("#btn-exportar").addEventListener("click", exportar);
+  $("#btn-importar").addEventListener("click", () => $("#archivo-importar").click());
+  $("#archivo-importar").addEventListener("change", (ev) => {
+    importar(ev.target.files[0]);
+    ev.target.value = "";
+  });
+  $("#btn-borrar").addEventListener("click", borrarHistorial);
 
   pintarTema();
   pintarControles();

@@ -73,11 +73,51 @@
     </section>
 
     <section id="panel-historial" role="tabpanel" aria-labelledby="tab-historial" hidden>
-      <p class="vacio">El historial llega en el siguiente paso.</p>
+      <div class="segmento filtro" role="radiogroup" aria-label="Filtrar historial" id="filtro">
+        <button role="radio" data-valor="todas" aria-checked="true">Todas</button>
+        <button role="radio" data-valor="pendientes" aria-checked="false">Pendientes</button>
+        <button role="radio" data-valor="dibujadas" aria-checked="false">Dibujadas</button>
+      </div>
+      <ol class="historial" id="historial"></ol>
+      <p class="vacio" id="historial-vacio" hidden></p>
     </section>
 
     <section id="panel-ajustes" role="tabpanel" aria-labelledby="tab-ajustes" hidden>
-      <p class="vacio">Los ajustes llegan en el siguiente paso.</p>
+      <div class="ajuste">
+        <span class="etiqueta" id="et-tema">Tema</span>
+        <div class="segmento" role="radiogroup" aria-labelledby="et-tema" data-ajuste="tema">
+          <button role="radio" data-valor="sistema">Sistema</button>
+          <button role="radio" data-valor="claro">Claro</button>
+          <button role="radio" data-valor="oscuro">Oscuro</button>
+        </div>
+      </div>
+
+      <div class="ajuste">
+        <span class="etiqueta" id="et-ventana">Ventana de no repetición</span>
+        <div class="contador" role="group" aria-labelledby="et-ventana">
+          <button id="ventana-menos" aria-label="Menos semillas">−</button>
+          <output id="ventana-valor" aria-live="polite"></output>
+          <button id="ventana-mas" aria-label="Más semillas">+</button>
+        </div>
+        <p class="ayuda">Los términos de las últimas <span id="ventana-texto"></span> semillas salen con menos frecuencia.</p>
+      </div>
+
+      <div class="ajuste">
+        <span class="etiqueta">Respaldo</span>
+        <div class="fila-botones">
+          <button id="btn-exportar">Exportar</button>
+          <button id="btn-importar">Importar</button>
+          <input type="file" id="archivo-importar" accept=".json,application/json" hidden>
+        </div>
+        <p class="ayuda">El historial vive en cada dispositivo. Exporta aquí e importa en el otro para pasarlo; las semillas repetidas no se duplican.</p>
+      </div>
+
+      <div class="ajuste">
+        <span class="etiqueta">Historial</span>
+        <button class="peligro" id="btn-borrar">Borrar historial</button>
+      </div>
+
+      <p class="pie">Germen Graphidis · el brote del dibujo</p>
     </section>
   </main>
 
@@ -98,6 +138,7 @@
   <script src="data/reglas.js"></script>
   <script src="js/frase.js"></script>
   <script src="js/generador.js"></script>
+  <script src="js/respaldo.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

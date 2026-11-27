@@ -244,3 +244,51 @@ button:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
 }
 
 .acciones[hidden] { display: none; }
+
+/* ---------- Historial ---------- */
+.filtro { margin: 8px 0 12px; }
+.historial { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.entrada {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  padding: 12px 12px 8px;
+}
+.entrada.dibujada { border-left: 4px solid var(--acento); }
+.entrada-frase { font: 1.05rem/1.38 var(--serif); margin: 0 0 6px; }
+.entrada-meta { font-size: 0.78rem; color: var(--tenue); margin: 0 0 6px; }
+.insignia {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  font-size: 0.72rem;
+  margin-left: 4px;
+}
+.dibujada .insignia { border-color: var(--acento); color: var(--acento); }
+.entrada-nota {
+  width: 100%;
+  min-height: 44px;
+  font: inherit;
+  font-size: 0.92rem;
+  color: inherit;
+  background: var(--papel);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 8px;
+  resize: vertical;
+  margin: 2px 0 6px;
+}
+.entrada-acciones { display: flex; flex-wrap: wrap; gap: 6px; }
+.entrada-acciones button { flex: 1 1 auto; padding: 0 10px; font-size: 0.88rem; }
+
+/* ---------- Ajustes ---------- */
+.ajuste { margin: 14px 0 18px; }
+.ayuda { font-size: 0.82rem; color: var(--tenue); margin: 6px 2px 0; }
+.contador { display: flex; align-items: center; gap: 8px; }
+.contador button { width: 52px; font-size: 1.3rem; }
+.contador output { min-width: 3ch; text-align: center; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.fila-botones { display: flex; gap: 8px; }
+.fila-botones button { flex: 1; }
+.peligro { width: 100%; color: var(--acento); border-color: var(--acento); }
+.pie { text-align: center; color: var(--tenue); font: italic 0.85rem var(--serif); margin: 32px 0 8px; }
