@@ -1,0 +1,246 @@
+/* Germen Graphidis — pensado primero para el celular en vertical. */
+
+:root {
+  --papel: #f4efe6;
+  --superficie: #fbf8f2;
+  --tinta: #1d1a17;
+  --tenue: #6b635a;
+  --borde: #d9d0c2;
+  --acento: #9b2c1f;
+  --acento-tinta: #fff8f0;
+  --bloqueado: #efe2cf;
+  --serif: Georgia, "Noto Serif", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radio: 10px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    --papel: #161412;
+    --superficie: #201d1a;
+    --tinta: #ece4d8;
+    --tenue: #a0968a;
+    --borde: #3a352f;
+    --acento: #d5523e;
+    --acento-tinta: #160e0c;
+    --bloqueado: #3a2b22;
+    color-scheme: dark;
+  }
+}
+
+:root[data-tema="oscuro"] {
+  --papel: #161412;
+  --superficie: #201d1a;
+  --tinta: #ece4d8;
+  --tenue: #a0968a;
+  --borde: #3a352f;
+  --acento: #d5523e;
+  --acento-tinta: #160e0c;
+  --bloqueado: #3a2b22;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0 auto;
+  max-width: 640px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 14px calc(96px + env(safe-area-inset-bottom));
+  background: var(--papel);
+  color: var(--tinta);
+  font: 16px/1.4 var(--sans);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  min-height: 44px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+
+/* ---------- Barra superior ---------- */
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 6px;
+  padding-top: max(8px, env(safe-area-inset-top));
+}
+.marca {
+  margin: 0;
+  font: italic 600 1.25rem/1 var(--serif);
+  letter-spacing: 0.02em;
+}
+.pestanas { display: flex; gap: 2px; margin-left: auto; }
+.pestanas button {
+  border: none;
+  background: none;
+  padding: 0 10px;
+  color: var(--tenue);
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+.pestanas button[aria-selected="true"] { color: var(--tinta); border-bottom-color: var(--acento); }
+
+/* ---------- Controles ---------- */
+/* Filas: soporte | intención; nivel (solo en reto); densidad | elementos. */
+.controles {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 6px 10px;
+  padding: 6px 0 4px;
+}
+.control { min-width: 0; grid-column: span 6; }
+#control-nivel { grid-column: 1 / -1; }
+.control:nth-last-child(2) { grid-column: span 5; }
+.control:last-child { grid-column: span 7; }
+.etiqueta {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tenue);
+  margin: 0 0 2px 2px;
+}
+.segmento {
+  display: flex;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--superficie);
+}
+.segmento button {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  padding: 0 4px;
+  font-size: 0.9rem;
+}
+.segmento button + button { border-left: 1px solid var(--borde); }
+.segmento button[aria-checked="true"] { background: var(--tinta); color: var(--papel); }
+#control-nivel[hidden] { display: none; }
+
+/* ---------- Frase ---------- */
+.frase {
+  font: 1.42rem/1.38 var(--serif);
+  margin: 18px 2px 16px;
+  min-height: 5.5em;
+  text-wrap: pretty;
+}
+.frase.vacia { color: var(--tenue); font-style: italic; }
+
+/* ---------- Chips ---------- */
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  display: flex;
+  align-items: stretch;
+  max-width: 100%;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  overflow: hidden;
+}
+.chip.bloqueado { background: var(--bloqueado); border-color: var(--acento); }
+.chip-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  padding: 4px 4px 4px 10px;
+  text-align: left;
+}
+.chip-eje {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tenue);
+}
+.chip-valor { font-size: 0.92rem; line-height: 1.2; overflow-wrap: anywhere; }
+.chip-candado {
+  flex: none;
+  width: 40px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--tenue);
+  display: grid;
+  place-items: center;
+}
+.chip.bloqueado .chip-candado { color: var(--acento); }
+.chip-candado svg { width: 18px; height: 18px; }
+.chip.relanzado { animation: destello 0.35s ease-out; }
+@keyframes destello { from { background: var(--bloqueado); } }
+
+/* ---------- Acciones ---------- */
+.acciones {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--papel) 70%, transparent);
+}
+.acciones button { flex: 1; min-height: 52px; padding: 0 8px; }
+.acciones .principal {
+  flex: 1.6;
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--acento-tinta);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.acciones button:disabled { opacity: 0.55; cursor: default; }
+
+/* ---------- Varios ---------- */
+.vacio { color: var(--tenue); text-align: center; margin: 48px 0; }
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .control, #control-nivel, .control:nth-last-child(2), .control:last-child { grid-column: span 4; }
+  .frase { min-height: 0; margin: 10px 2px; font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip.relanzado { animation: none; }
+}
+
+.acciones[hidden] { display: none; }

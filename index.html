@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="Semillas creativas para dibujar tatuajes e ilustraciones.">
+  <title>Germen Graphidis</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <h1 class="marca">Germen</h1>
+    <nav class="pestanas" role="tablist" aria-label="Secciones">
+      <button role="tab" id="tab-generar" aria-controls="panel-generar" aria-selected="true">Generar</button>
+      <button role="tab" id="tab-historial" aria-controls="panel-historial" aria-selected="false">Historial</button>
+      <button role="tab" id="tab-ajustes" aria-controls="panel-ajustes" aria-selected="false">Ajustes</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="panel-generar" role="tabpanel" aria-labelledby="tab-generar">
+      <div class="controles" id="controles">
+        <div class="control">
+          <span class="etiqueta" id="et-soporte">Soporte</span>
+          <div class="segmento" role="radiogroup" aria-labelledby="et-soporte" data-ajuste="soporte">
+            <button role="radio" data-valor="lienzo">Lienzo</button>
+            <button role="radio" data-valor="piel">Piel</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="etiqueta" id="et-intencion">Intención</span>
+          <div class="segmento" role="radiogroup" aria-labelledby="et-intencion" data-ajuste="intencion">
+            <button role="radio" data-valor="lucir">Lucir</button>
+            <button role="radio" data-valor="reto">Reto</button>
+          </div>
+        </div>
+        <div class="control" id="control-nivel">
+          <span class="etiqueta" id="et-nivel">Nivel</span>
+          <div class="segmento" role="radiogroup" aria-labelledby="et-nivel" data-ajuste="nivel">
+            <button role="radio" data-valor="1">1</button>
+            <button role="radio" data-valor="2">2</button>
+            <button role="radio" data-valor="3">3</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="etiqueta" id="et-densidad">Densidad</span>
+          <div class="segmento" role="radiogroup" aria-labelledby="et-densidad" data-ajuste="densidad">
+            <button role="radio" data-valor="escueta">Escueta</button>
+            <button role="radio" data-valor="completa">Completa</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="etiqueta" id="et-elementos">Elementos</span>
+          <div class="segmento" role="radiogroup" aria-labelledby="et-elementos" data-ajuste="elementos">
+            <button role="radio" data-valor="auto">Auto</button>
+            <button role="radio" data-valor="siempre">Siempre</button>
+            <button role="radio" data-valor="nunca">Nunca</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="frase" id="frase" aria-live="polite"></p>
+
+      <ul class="chips" id="chips" aria-label="Términos de la semilla"></ul>
+
+      <div class="acciones">
+        <button class="principal" id="btn-generar">Generar</button>
+        <button id="btn-guardar">Guardar</button>
+        <button id="btn-copiar" aria-label="Copiar frase">Copiar</button>
+      </div>
+    </section>
+
+    <section id="panel-historial" role="tabpanel" aria-labelledby="tab-historial" hidden>
+      <p class="vacio">El historial llega en el siguiente paso.</p>
+    </section>
+
+    <section id="panel-ajustes" role="tabpanel" aria-labelledby="tab-ajustes" hidden>
+      <p class="vacio">Los ajustes llegan en el siguiente paso.</p>
+    </section>
+  </main>
+
+  <div class="aviso" id="aviso" role="status" aria-live="polite" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="data/estilos.js"></script>
+  <script src="data/tratamiento.js"></script>
+  <script src="data/foco.js"></script>
+  <script src="data/elementos.js"></script>
+  <script src="data/estados.js"></script>
+  <script src="data/relaciones.js"></script>
+  <script src="data/formatos.js"></script>
+  <script src="data/conceptos.js"></script>
+  <script src="data/pares.js"></script>
+  <script src="data/universos.js"></script>
+  <script src="data/zonas.js"></script>
+  <script src="data/reglas.js"></script>
+  <script src="js/frase.js"></script>
+  <script src="js/generador.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
