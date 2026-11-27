@@ -100,3 +100,14 @@ test("sin elemento y con par en tensión", () => {
   const frase = F.construir({ modo: lucir, terminos: { par: "noche-dia", estilo: "ornamental", linea: "fina" } });
   assert.equal(frase, "Tensión entre noche y día, en ornamental; en línea fina.");
 });
+
+test("en reto no se repite el nombre de la variable", () => {
+  const reto = (foco) => F.construir({ modo: { intencion: "reto" }, terminos: {
+    elemento: "lobo", estilo: "blackwork", color: "solo-negro", foco } });
+  assert.match(reto("composicion-composicion-centrada"), /Reto nivel 1, composición: centrada\./);
+  assert.match(reto("perspectiva-perspectiva-curvilinea-de-ojo-de-pez"), /perspectiva: curvilínea de ojo de pez\./);
+  assert.match(reto("pose-pose-de-tension-extrema-combate-salto"), /pose: tensión extrema \(combate, salto mortal\)\./);
+  // en lucir la variante va completa
+  assert.match(F.construir({ modo: { intencion: "lucir" }, terminos: { elemento: "lobo", estilo: "blackwork",
+    color: "solo-negro", foco: "composicion-composicion-centrada" } }), /Foco: composición centrada\./);
+});

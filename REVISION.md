@@ -85,6 +85,6 @@ Las agregué para que un elemento no coincida con un formato casi igual. Salen e
 
 ## 10. Visto al generar semillas
 
-- **"enroscado en"** pone al secundario enroscado en el principal, y a veces sale raro ("una góndola enroscada en una jaula colgante"). ¿Lo limito a secundarios flexibles (serpientes, hiedra, cadena, raíces, pulpo…)?
-- **Variantes que repiten el nombre de su variable:** "Reto nivel 3, perspectiva: perspectiva curvilínea de ojo de pez". ¿La dejo como "curvilínea de ojo de pez"?
-
+Resuelto por Den:
+- **"enroscado en"** ahora solo sale si el secundario es flexible: serpiente, cobra, serpiente emplumada, basilisco, hidra, dragón, wyvern, kraken, pulpo, morena, medusa, ciempiés, ouroboros, hiedra, pasiflora, rama de espinas, raíces, cadena, soga de horca, rosario, collar de perlas, trenza o red de pesca. La lista se edita en `data/relaciones.js`.
+- **Variantes acortadas:** "perspectiva: curvilínea de ojo de pez" y "pose: tensión extrema (combate, salto mortal)". En reto, "composición centrada" sale como "composición: centrada"; en lucir sigue completa ("Foco: composición centrada").

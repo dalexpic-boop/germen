@@ -53,7 +53,7 @@ function violaciones(s, bloqueados = new Set()) {
   if (t.relacion) {
     const r = termino("relacion", t.relacion), A = termino("elemento", t.elemento), B = termino("elemento", t.secundario);
     if (r.requiere && r.requiere.A === "animado" && !A.animado) v.push("relación exige A animado: " + r.id);
-    if (r.requiere && r.requiere.B && !r.requiere.B.familias.includes(B.familia)) v.push("relación exige familia de B: " + r.id);
+    if (r.requiere && r.requiere.B && !((r.requiere.B.familias || []).includes(B.familia) || (r.requiere.B.ids || []).includes(B.id))) v.push("relación exige familia de B: " + r.id);
   }
   if (t.estado) {
     const e = termino("estado", t.estado);
@@ -220,4 +220,17 @@ test("generar es rápido (menos de 1 ms de media en el portátil)", () => {
   }
   const ms = Number(process.hrtime.bigint() - t0) / 1e6 / n;
   assert.ok(ms < 1, ms.toFixed(3) + " ms");
+});
+
+test("«enroscado en» solo sale con secundarios flexibles", () => {
+  const rel = S.relaciones.find((r) => r.id === "enroscado-en");
+  const rng = mulberry32(23);
+  let vistos = 0;
+  for (let i = 0; i < 20000; i++) {
+    const s = G.generar(null, [], { densidad: "completa", elementos: "siempre" }, rng);
+    if (s.terminos.relacion !== "enroscado-en") continue;
+    vistos++;
+    assert.ok(rel.requiere.B.ids.includes(s.terminos.secundario), s.terminos.secundario);
+  }
+  assert.ok(vistos > 0);
 });

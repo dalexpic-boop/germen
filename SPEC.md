@@ -68,7 +68,7 @@ Campos por tipo:
 - **Estilo:** `probElementos`: "alta" | "media" | "baja".
 - **Elemento:** `genero`: "m" | "f"; `numero`: "s" | "p"; `plural` (forma plural sin artículo); `articulo` (opcional, para forzar, por ejemplo "un" en "un hacha"); `animado`: boolean.
 - **Estado:** `formas`: { m, f, mp, fp }; `excluir`: { familias: [], ids: [] }.
-- **Relación:** `plantilla`; `requiere`: { A?: "animado", B?: { familias: [] } }.
+- **Relación:** `plantilla`; `requiere`: { A?: "animado", B?: { familias?: [], ids?: [] } }. B cumple si está en alguna de las familias o de los ids.
 - **Foco:** `variable`; `modo`: "lucir" | "reto"; `nivel`: 1 | 2 | 3 (solo reto y composición); `figura`: boolean; `soporte`: "piel" (opcional, si solo aplica a piel).
 - **Universo:** `sub` (arreglo opcional de { id, texto, frase }); `fraseSub` (plantilla).
 - **Zona:** `forma`.
@@ -278,3 +278,4 @@ Mobile-first, compacta, utilizable en una tablet apoyada al lado del papel.
 - Formato de la semilla: `{ id, fecha, modo, terminos }`. `terminos` guarda ids por eje (`estilo`, `color`, `sombreado`, `linea`, `foco`, `elemento`, `secundario`, `relacion`, `estado`, `concepto1`, `concepto2`, `par`, `universo`, `formato`, `zona`). `universo` es `{ id, sub? }` y `estado` es `{ id, en: "A" | "B" }`: hay a lo sumo un estado, aplicado al principal o al secundario.
 - El generador sortea en ese orden; el foco va antes del elemento para que una variante con figura exija un elemento animado. Los términos bloqueados se colocan primero y los demás se sortean entre los compatibles con lo ya colocado. Es el equivalente de "resortear el término no bloqueado más reciente".
 - Sin elemento y con par en tensión, la frase empieza "Tensión entre {a} y {b}, en {estilo}…".
+- En reto, si la variante empieza con el nombre de su variable, la frase no lo repite: "composición: centrada".

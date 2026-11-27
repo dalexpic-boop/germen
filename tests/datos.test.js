@@ -131,7 +131,12 @@ test("relaciones: plantillas con marcadores conocidos y requisitos válidos", ()
     assert.ok(r.plantilla.includes("{A}") && /\{B(:plural)?\}/.test(r.plantilla), r.id);
     if (r.requiere) {
       if (r.requiere.A) assert.equal(r.requiere.A, "animado", r.id);
-      if (r.requiere.B) for (const f of r.requiere.B.familias) assert.ok(familias.has(f), r.id + ": " + f);
+      if (r.requiere.B) {
+        const ids = new Set(S.elementos.map((e) => e.id));
+        for (const f of r.requiere.B.familias || []) assert.ok(familias.has(f), r.id + ": " + f);
+        for (const i of r.requiere.B.ids || []) assert.ok(ids.has(i), r.id + ": " + i);
+        assert.ok((r.requiere.B.familias || []).length + (r.requiere.B.ids || []).length > 0, r.id);
+      }
     }
   }
   assert.ok(S.relaciones.find((r) => r.id === "con"), "existe la relación de respaldo 'con'");

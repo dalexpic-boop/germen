@@ -126,7 +126,10 @@
       let f;
       if (semilla.modo && semilla.modo.intencion === "reto") {
         const v = (S.variablesFoco || []).find((x) => x.id === r.foco.variable);
-        f = "Reto nivel " + r.foco.nivel + ", " + (v ? v.texto : r.foco.variable) + ": " + r.foco.texto;
+        const nombre = v ? v.texto : r.foco.variable;
+        // "composición: composición centrada" → "composición: centrada"
+        const variante = r.foco.texto.startsWith(nombre + " ") ? r.foco.texto.slice(nombre.length + 1) : r.foco.texto;
+        f = "Reto nivel " + r.foco.nivel + ", " + nombre + ": " + variante;
         if (r.foco.figura && !r.elemento) f += ", aplicado a una figura humana o animal";
       } else {
         f = "Foco: " + r.foco.texto;

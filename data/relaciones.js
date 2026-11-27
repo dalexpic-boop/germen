@@ -1,10 +1,10 @@
-// Relaciones (LISTAS.md §6). Plantillas: {A}, {B}, {o:A}, {pron:A}, {B:plural}.
+// Relaciones (LISTAS.md §6). Plantillas: {A}, {B}, {o:A}, {pron:A}, {B:plural}. requiere.B: B cumple si está en alguna de las familias o de los ids.
 (function (root) {
   root.SEMILLA = root.SEMILLA || {};
   root.SEMILLA.relaciones = [
     {id: "con", texto: "con", familia: "relacion", peso: 3, plantilla: "{A} con {B}"},
     {id: "atravesado-por", texto: "atravesado por", familia: "relacion", plantilla: "{A} atravesad{o:A} por {B}"},
-    {id: "enroscado-en", texto: "enroscado en", familia: "relacion", plantilla: "{B} enroscad{o:B} en {A}"},
+    {id: "enroscado-en", texto: "enroscado en", familia: "relacion", plantilla: "{B} enroscad{o:B} en {A}", requiere: {B: {ids: ["serpiente", "cobra", "serpiente-emplumada", "basilisco", "hidra", "dragon", "wyvern", "kraken", "pulpo", "morena", "medusa", "ciempies", "ouroboros", "hiedra", "pasiflora", "rama-de-espinas", "raices", "cadena", "soga-de-horca", "rosario", "collar-de-perlas", "trenza", "red-de-pesca"]}}},
     {id: "dentro-de", texto: "dentro de", familia: "relacion", plantilla: "{B} dentro de {A}"},
     {id: "sosteniendo", texto: "sosteniendo", familia: "relacion", plantilla: "{A} sosteniendo {B}", requiere: {A: "animado"}},
     {id: "brotando-de", texto: "brotando de", familia: "relacion", plantilla: "{A} con {B} brotando de {pron:A}"},

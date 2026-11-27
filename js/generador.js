@@ -169,11 +169,16 @@
     return estado.excluir.familias.includes(el.familia) || estado.excluir.ids.includes(el.id);
   }
 
+  // B cumple si está en alguna de las familias o de los ids pedidos.
+  function cumpleB(req, B) {
+    return (req.familias || []).includes(B.familia) || (req.ids || []).includes(B.id);
+  }
+
   function relacionCumple(rel, A, B) {
     const q = rel.requiere;
     if (!q) return true;
     if (q.A === "animado" && A && !A.animado) return false;
-    if (q.B && B && !q.B.familias.includes(B.familia)) return false;
+    if (q.B && B && !cumpleB(q.B, B)) return false;
     return true;
   }
 
