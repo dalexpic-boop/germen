@@ -92,7 +92,7 @@
     {id: "decoro", texto: "decoro", familia: "virtud"},
     {id: "mentira", texto: "mentira", familia: "engano"},
     {id: "engano", texto: "engaño", familia: "engano"},
-    {id: "mascara", texto: "máscara", familia: "engano"},
+    {id: "mascara", texto: "máscara", frase: "lo oculto tras la máscara", familia: "engano"},
     {id: "astucia", texto: "astucia", familia: "engano"},
     {id: "misterio", texto: "misterio", familia: "engano"},
     {id: "verdad", texto: "verdad", familia: "verdad-y-orden"},
@@ -120,7 +120,7 @@
     {id: "infinito", texto: "infinito", frase: "lo infinito", familia: "tiempo-y-destino"},
     {id: "renacimiento", texto: "renacimiento", familia: "tiempo-y-destino"},
     {id: "memento-mori", texto: "memento mori", familia: "tiempo-y-destino"},
-    {id: "derrotero", texto: "derrotero", familia: "tiempo-y-destino"},
+    {id: "derrotero", texto: "derrotero", frase: "un derrotero", familia: "tiempo-y-destino"},
     {id: "feminidad", texto: "feminidad", familia: "identidad"},
     {id: "masculinidad", texto: "masculinidad", familia: "identidad"}
   ];

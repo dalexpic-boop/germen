@@ -1,6 +1,6 @@
 // Service worker: caché "cache-first" de todos los archivos (SPEC.md §11).
 // VERSION la calcula tools/version.js a partir del contenido; no la edites a mano.
-const VERSION = "4182055d9a";
+const VERSION = "5bfd25328c";
 const CACHE = "germen-" + VERSION;
 
 const ARCHIVOS = [

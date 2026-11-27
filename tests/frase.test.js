@@ -111,3 +111,10 @@ test("en reto no se repite el nombre de la variable", () => {
   assert.match(F.construir({ modo: { intencion: "lucir" }, terminos: { elemento: "lobo", estilo: "blackwork",
     color: "solo-negro", foco: "composicion-composicion-centrada" } }), /Foco: composición centrada\./);
 });
+
+test("conceptos con frase propia (revisión de Den)", () => {
+  const f = (c) => F.construir({ modo: lucir, terminos: { elemento: "lobo", estilo: "blackwork", linea: "gruesa", concepto1: c } });
+  assert.match(f("mascara"), /Que transmita lo oculto tras la máscara\.$/);
+  assert.match(f("derrotero"), /Que transmita un derrotero\.$/);
+  assert.match(f("infantil"), /Que transmita lo infantil\.$/);
+});
