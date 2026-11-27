@@ -1,0 +1,43 @@
+// Universos (LISTAS.md §10). fraseSub usa {sub}.
+(function (root) {
+  root.SEMILLA = root.SEMILLA || {};
+  root.SEMILLA.universos = [
+    {id: "fantasia", texto: "fantasía", familia: "universo"},
+    {id: "magia", texto: "magia", familia: "universo"},
+    {id: "ocultismo", texto: "ocultismo", familia: "universo"},
+    {id: "esoterico", texto: "esotérico", familia: "universo"},
+    {id: "drogas", texto: "drogas", familia: "universo"},
+    {id: "psiconauta", texto: "psiconauta", familia: "universo"},
+    {id: "rumba-y-fiesta", texto: "rumba y fiesta", familia: "universo"},
+    {id: "amuletos-y-talismanes", texto: "amuletos y talismanes", familia: "universo"},
+    {id: "naturaleza", texto: "naturaleza", familia: "universo"},
+    {id: "historia-natural", texto: "historia natural", familia: "universo"},
+    {id: "cultura-pop", texto: "cultura pop", familia: "universo"},
+    {id: "subculturas", texto: "subculturas", familia: "universo"},
+    {id: "puzzles", texto: "puzzles", familia: "universo"},
+    {id: "fabula", texto: "fábula", familia: "universo"},
+    {id: "madre", texto: "madre", familia: "universo"},
+    {id: "padre", texto: "padre", familia: "universo"},
+    {id: "familia", texto: "familia", familia: "universo"},
+    {id: "juego", texto: "juego", familia: "universo"},
+    {id: "hobbies", texto: "hobbies", familia: "universo"},
+    {id: "profesiones", texto: "profesiones", familia: "universo"},
+    {id: "ciencia", texto: "ciencia", familia: "universo"},
+    {id: "deportes", texto: "deportes", familia: "universo"},
+    {id: "musica", texto: "música", familia: "universo"},
+    {id: "artes", texto: "artes", familia: "universo"},
+    {id: "casino", texto: "casino", familia: "universo"},
+    {id: "libros", texto: "libros", familia: "universo"},
+    {id: "comics", texto: "comics", familia: "universo"},
+    {id: "peliculas", texto: "películas", familia: "universo"},
+    {id: "manga-y-kawaii", texto: "manga y kawaii", familia: "universo"},
+    {id: "mitologia", texto: "mitología", familia: "universo"},
+    {id: "celebridades", texto: "celebridades", familia: "universo"},
+    {id: "personalidades", texto: "personalidades", familia: "universo"},
+    {id: "lugares", texto: "lugares", familia: "universo"},
+    {id: "tarot", texto: "tarot", familia: "universo", fraseSub: "A partir del arcano {sub}.", sub: [{id: "el-loco", texto: "El Loco"}, {id: "el-mago", texto: "El Mago"}, {id: "la-sacerdotisa", texto: "La Sacerdotisa"}, {id: "la-emperatriz", texto: "La Emperatriz"}, {id: "el-emperador", texto: "El Emperador"}, {id: "el-hierofante", texto: "El Hierofante"}, {id: "los-enamorados", texto: "Los Enamorados"}, {id: "el-carro", texto: "El Carro"}, {id: "la-fuerza", texto: "La Fuerza"}, {id: "el-ermitano", texto: "El Ermitaño"}, {id: "la-rueda-de-la-fortuna", texto: "La Rueda de la Fortuna"}, {id: "la-justicia", texto: "La Justicia"}, {id: "el-colgado", texto: "El Colgado"}, {id: "la-muerte", texto: "La Muerte"}, {id: "la-templanza", texto: "La Templanza"}, {id: "el-diablo", texto: "El Diablo"}, {id: "la-torre", texto: "La Torre"}, {id: "la-estrella", texto: "La Estrella"}, {id: "la-luna", texto: "La Luna"}, {id: "el-sol", texto: "El Sol"}, {id: "el-juicio", texto: "El Juicio"}, {id: "el-mundo", texto: "El Mundo"}]},
+    {id: "zodiaco", texto: "zodiaco", familia: "universo", fraseSub: "A partir del signo de {sub}.", sub: [{id: "aries", texto: "Aries"}, {id: "tauro", texto: "Tauro"}, {id: "geminis", texto: "Géminis"}, {id: "cancer", texto: "Cáncer"}, {id: "leo", texto: "Leo"}, {id: "virgo", texto: "Virgo"}, {id: "libra", texto: "Libra"}, {id: "escorpio", texto: "Escorpio"}, {id: "sagitario", texto: "Sagitario"}, {id: "capricornio", texto: "Capricornio"}, {id: "acuario", texto: "Acuario"}, {id: "piscis", texto: "Piscis"}]},
+    {id: "movimientos-artisticos", texto: "movimientos artísticos", familia: "universo", fraseSub: "Inspirado en {sub}.", sub: [{id: "arte-bizantino", texto: "arte bizantino", frase: "el arte bizantino"}, {id: "gotico", texto: "gótico", frase: "el gótico"}, {id: "manuscrito-iluminado-medieval", texto: "manuscrito iluminado medieval", frase: "el manuscrito iluminado medieval"}, {id: "grabado-medieval", texto: "grabado medieval", frase: "el grabado medieval"}, {id: "renacimiento-italiano", texto: "Renacimiento italiano", frase: "el Renacimiento italiano"}, {id: "grabado-renacentista", texto: "grabado renacentista", frase: "el grabado renacentista"}, {id: "barroco", texto: "barroco", frase: "el barroco"}, {id: "barroco-colonial-americano", texto: "barroco colonial americano", frase: "el barroco colonial americano"}, {id: "bodegon-flamenco", texto: "bodegón flamenco", frase: "el bodegón flamenco"}, {id: "romanticismo", texto: "romanticismo", frase: "el romanticismo"}, {id: "prerrafaelismo", texto: "prerrafaelismo", frase: "el prerrafaelismo"}, {id: "simbolismo", texto: "simbolismo", frase: "el simbolismo"}, {id: "impresionismo", texto: "impresionismo", frase: "el impresionismo"}, {id: "art-nouveau", texto: "art nouveau", frase: "el art nouveau"}, {id: "art-deco", texto: "art déco", frase: "el art déco"}, {id: "expresionismo", texto: "expresionismo", frase: "el expresionismo"}, {id: "cubismo", texto: "cubismo", frase: "el cubismo"}, {id: "futurismo", texto: "futurismo", frase: "el futurismo"}, {id: "dadaismo", texto: "dadaísmo", frase: "el dadaísmo"}, {id: "surrealismo", texto: "surrealismo", frase: "el surrealismo"}, {id: "constructivismo-ruso", texto: "constructivismo ruso", frase: "el constructivismo ruso"}, {id: "bauhaus", texto: "Bauhaus", frase: "la Bauhaus"}, {id: "muralismo-mexicano", texto: "muralismo mexicano", frase: "el muralismo mexicano"}, {id: "pop-art", texto: "pop art", frase: "el pop art"}, {id: "op-art", texto: "op art", frase: "el op art"}, {id: "psicodelia", texto: "psicodelia", frase: "la psicodelia"}, {id: "ukiyo-e", texto: "ukiyo-e", frase: "el ukiyo-e"}, {id: "arte-rupestre", texto: "arte rupestre", frase: "el arte rupestre"}, {id: "art-brut", texto: "art brut", frase: "el art brut"}]},
+    {id: "esteticas-culturales", texto: "estéticas culturales", familia: "universo", fraseSub: "Con estética {sub}.", sub: [{id: "japonesa", texto: "japonesa"}, {id: "china", texto: "china"}, {id: "coreana", texto: "coreana"}, {id: "tibetana", texto: "tibetana"}, {id: "india", texto: "india"}, {id: "persa", texto: "persa"}, {id: "islamica", texto: "islámica"}, {id: "egipcia-antigua", texto: "egipcia antigua"}, {id: "griega-clasica", texto: "griega clásica"}, {id: "romana", texto: "romana"}, {id: "celta", texto: "celta"}, {id: "nordica", texto: "nórdica"}, {id: "eslava", texto: "eslava"}, {id: "bizantina", texto: "bizantina"}, {id: "maya", texto: "maya"}, {id: "mexica", texto: "mexica"}, {id: "inca", texto: "inca"}, {id: "muisca", texto: "muisca"}, {id: "quimbaya", texto: "quimbaya"}, {id: "tairona", texto: "tairona"}, {id: "polinesia", texto: "polinesia"}, {id: "maori", texto: "maorí"}, {id: "aborigen-australiana", texto: "aborigen australiana"}, {id: "africana-occidental", texto: "africana occidental"}, {id: "etiope", texto: "etíope"}, {id: "wayuu", texto: "wayuu"}, {id: "guna", texto: "guna"}, {id: "mongola", texto: "mongola"}, {id: "tailandesa", texto: "tailandesa"}, {id: "balinesa", texto: "balinesa"}]}
+  ];
+})(typeof window !== "undefined" ? window : globalThis);

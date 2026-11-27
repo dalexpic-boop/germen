@@ -74,6 +74,13 @@ Campos por tipo:
 - **Zona:** `forma`.
 - **Regla:** { `alcance`: "siempre" | "lucir", `a`: selector, `b`: selector }. Un selector identifica un término por eje, id, familia o subnivel.
 
+Detalles fijados en la conversión:
+- `articulo: ""` indica que la `frase` ya trae sus artículos ("un cerdo y un gallo").
+- Foco: `tambienLucir: true` en las variantes de composición de nivel 1 y 2. Los nombres de las variables están en `SEMILLA.variablesFoco`.
+- Las familias, con su nombre visible, están en `SEMILLA.familiasElementos` (con `animada`) y `SEMILLA.familiasConceptos`.
+- Tratamiento: `SEMILLA.color`, `SEMILLA.sombreado` y `SEMILLA.linea`.
+- Selector de regla: `{ eje, ids }` o `{ eje, excepto }`, más `sub` opcional para los subniveles de universo. Ejes: estilo, color, sombreado, linea, elemento (principal o secundario), formato, universo, foco.
+
 ## 5. Ejes
 
 1. **Estilo:** siempre presente.
